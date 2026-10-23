@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Raleigh",
+    "lat": 35.831868,
+    "lng": -78.641042
+  },
+  {
+    "name": "Durham",
+    "lat": 35.977928,
+    "lng": -78.898109
+  },
+  {
+    "name": "Chapel Hill",
+    "lat": 35.928328,
+    "lng": -79.041375
+  },
+  {
+    "name": "Cary",
+    "lat": 35.781302,
+    "lng": -78.823444
+  },
+  {
+    "name": "Apex",
+    "lat": 35.725577,
+    "lng": -78.879919
+  },
+  {
+    "name": "Morrisville",
+    "lat": 35.836356,
+    "lng": -78.839001
+  },
+  {
+    "name": "Holly Springs",
+    "lat": 35.651994,
+    "lng": -78.843196
+  },
+  {
+    "name": "Garner",
+    "lat": 35.689477,
+    "lng": -78.614599
+  },
+  {
+    "name": "Clayton",
+    "lat": 35.658139,
+    "lng": -78.446007
+  },
+  {
+    "name": "Smithfield",
+    "lat": 35.52382,
+    "lng": -78.352216
+  },
+  {
+    "name": "Selma",
+    "lat": 35.539726,
+    "lng": -78.291735
+  },
+  {
+    "name": "Fuquay-Varina",
+    "lat": 35.608902,
+    "lng": -78.772961
+  },
+  {
+    "name": "Wake Forest",
+    "lat": 35.963685,
+    "lng": -78.51174
+  },
+  {
+    "name": "Knightdale",
+    "lat": 35.791726,
+    "lng": -78.496457
+  },
+  {
+    "name": "Wendell",
+    "lat": 35.793564,
+    "lng": -78.351103
+  },
+  {
+    "name": "Zebulon",
+    "lat": 35.829542,
+    "lng": -78.314158
+  }
+]
