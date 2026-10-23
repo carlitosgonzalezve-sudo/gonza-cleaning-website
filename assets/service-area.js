@@ -6,7 +6,6 @@
   let map, points, bounds, initialization;
   const buttons = [...document.querySelectorAll('[data-map-city]')];
   const status = document.getElementById('coverageStatus');
-  const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function selectCity(name, focus = true) {
     if (!points) return;
     const point = points.find(item => item.name === name);
@@ -14,13 +13,13 @@
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mapCity === name)));
     points.forEach(item => item.marker.getElement()?.classList.toggle('is-selected', item === point));
     status.textContent = name + ', NC — include your ZIP code so we can confirm your address.';
-    if (focus) map.setView([point.lat, point.lng], 11, {animate: !prefersReducedMotion});
+    if (focus) map.setView([point.lat, point.lng], 11, {animate: false});
     point.marker.openPopup();
   }
   function resetMap() {
     if (!map) return;
     map.closePopup();
-    map.fitBounds(bounds, {padding: [42, 42], animate: !prefersReducedMotion});
+    map.fitBounds(bounds, {padding: [42, 42], animate: false});
     buttons.forEach(button => button.setAttribute('aria-pressed', 'false'));
     points.forEach(item => item.marker.getElement()?.classList.remove('is-selected'));
     status.textContent = 'Explore our 16 service communities. Select a city to take a closer look.';
@@ -35,13 +34,16 @@
             return response.json();
           }),
           new Promise((resolve, reject) => {
-            if (window.L) return resolve();
             const stylesheet = document.createElement('link');
             stylesheet.rel = 'stylesheet'; stylesheet.href = 'assets/leaflet.css';
+            const styleReady = new Promise((loaded, failed) => {stylesheet.onload = loaded; stylesheet.onerror = failed;});
             document.head.append(stylesheet);
-            const script = document.createElement('script');
-            script.src = 'assets/leaflet.js'; script.onload = resolve; script.onerror = reject;
-            document.head.append(script);
+            const scriptReady = window.L ? Promise.resolve() : new Promise((loaded, failed) => {
+              const script = document.createElement('script');
+              script.src = 'assets/leaflet.js'; script.onload = loaded; script.onerror = failed;
+              document.head.append(script);
+            });
+            Promise.all([styleReady, scriptReady]).then(resolve, reject);
           })
         ]);
         mapElement.replaceChildren();
@@ -72,6 +74,7 @@
           const description = document.createElement('p'); description.textContent = 'Residential & commercial cleaning. Share your ZIP code to confirm availability.';
           const link = document.createElement('a'); link.href = '#estimate'; link.className = 'coverage-quote';
           link.dataset.mapQuoteCity = city.name; link.textContent = 'Get a free estimate →';
+          link.addEventListener('click', () => {document.getElementById('serviceCity').value = city.name;});
           popup.append(title, description, link);
           marker.bindPopup(popup, {maxWidth: 245, autoPanPaddingTopLeft: [20,30], autoPanPaddingBottomRight: [20,30]});
           marker.on('click', () => selectCity(city.name, false));
