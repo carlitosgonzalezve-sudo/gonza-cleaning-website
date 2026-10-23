@@ -68,7 +68,7 @@
             title: city.name + ', North Carolina', alt: city.name + ' service community',
             icon: L.divIcon({className: 'coverage-marker', html: '<span></span>', iconSize: [24,24], iconAnchor: [12,12]})
           }).addTo(map);
-          marker.bindTooltip(city.name, {permanent: true, direction: directions[city.name], offset: [0,0], className: 'coverage-label' + (outerLabels.has(city.name) ? '' : ' coverage-label-minor')});
+          marker.bindTooltip(city.name, {permanent: outerLabels.has(city.name), direction: directions[city.name], offset: [0,0], className: 'coverage-label' + (outerLabels.has(city.name) ? '' : ' coverage-label-minor')});
           const popup = document.createElement('div'); popup.className = 'coverage-popup';
           const title = document.createElement('strong'); title.textContent = city.name + ', NC';
           const description = document.createElement('p'); description.textContent = 'Residential & commercial cleaning. Share your ZIP code to confirm availability.';
