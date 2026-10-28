@@ -45,7 +45,7 @@ footer{background:linear-gradient(145deg,#020d20,#041e3e);color:#a9c1d4;padding:
 @media(max-width:950px){footer .footer-grid{grid-template-columns:1fr 1fr}footer .footer-brand{grid-column:1/-1}}
 @media(max-width:640px){footer .footer-grid{grid-template-columns:1fr}footer .footer-brand{grid-column:auto}.footer-bottom{display:grid;margin-top:38px}}
 </style>
-<link rel="stylesheet" href="assets/service-area.css?v=20261023-3">
+<link rel="stylesheet" href="assets/service-area.css?v=20261028-spray-1">
 <style id="gonza-enhancements">
 .service{min-height:0}.service-details{margin-top:15px;padding-top:13px;border-top:1px solid #d8eaf4}.service-details summary{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#075e99;font-size:12px;font-weight:800;cursor:pointer;list-style:none}.service-details summary::-webkit-details-marker{display:none}.service-details summary:after{content:"+";display:grid;place-items:center;width:24px;height:24px;border-radius:8px;background:#e8faff;color:#057ec3;font-size:16px}.service-details[open] summary:after{content:"−"}.service-details ul{margin:12px 0 0;padding-left:18px;color:#64748b;font-size:12px;line-height:1.75}
 .cta{margin-bottom:0;border-radius:34px 34px 0 0}.footer-logo{padding:0;border:0;background:none;box-shadow:none}.footer-logo img{filter:drop-shadow(0 0 3px #ffffffcc) drop-shadow(0 0 10px #ffffff8f) drop-shadow(0 0 24px #ffffff52)}.legal-links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.legal-links a:hover{color:#40d8ff}.consent{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;color:#a8c8dc;font-size:12px;line-height:1.55}.consent input{width:18px;height:18px;margin-top:1px;accent-color:#19bbed}.consent a{color:#47d9ff;text-decoration:underline}.mobile-actions{display:none}
@@ -111,7 +111,7 @@ const formGrid=document.querySelector('.estimate-form .form-grid');if(formGrid){
 const footerBottom=document.querySelector('.footer-bottom');if(footerBottom){footerBottom.innerHTML='<div class="legal-links"><span>© 2026 Gonza Cleaning Services LLC. All rights reserved.</span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div><span>Clean spaces. Happier lives.</span>'}
 const themeToggle=document.getElementById('themeToggle');const themeMeta=document.querySelector('meta[name="theme-color"]');const syncThemeToggle=()=>{const dark=document.documentElement.dataset.theme==='dark';themeToggle?.setAttribute('aria-pressed',String(dark));themeToggle?.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');if(themeMeta)themeMeta.content=dark?'#071321':'#f8fcff'};themeToggle?.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme==='dark';if(dark)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{localStorage.setItem('gonza-theme',dark?'light':'dark')}catch(e){}syncThemeToggle()});syncThemeToggle();
 </script>
-<script src="assets/service-area.js?v=20261023-3" defer></script>
+<script src="assets/service-area.js?v=20261028-spray-1" defer></script>
 <script src="assets/cleaning-plans.js?v=20261023-1" defer></script>
 </body></html>
 
