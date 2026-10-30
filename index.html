@@ -140,13 +140,25 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
   event.preventDefault();
   if(sending||!form.reportValidity()||form.elements._honey.value)return;
   const button=form.querySelector('button[type="submit"]');
-  const payload=Object.fromEntries(new FormData(form));
-  delete payload._honey;
-  payload.subject='New Free Estimate Request - GONZA';
-  payload.from_name='GONZA Website Estimates';
-  payload.message=message();
-  if(payload.email)payload.replyto=payload.email;
-  else delete payload.email;
+  const data=new FormData(form);
+  const payload={
+   access_key:data.get('access_key'),
+   subject:'New Free Estimate Request - GONZA',
+   from_name:'GONZA Website Estimates'
+  };
+  // Separate, readable fields give each answer its own block in the email.
+  // Do not also send a consolidated message: that duplicates the entire form.
+  Object.entries(labels).forEach(([key,label])=>{
+   if(!data.has(key)&&['bedrooms','bathrooms'].includes(key))return;
+   const value=String(data.get(key)||'').trim();
+   if(key==='email'){
+    if(value){payload.email=value;payload.replyto=value;}
+   }else{
+    const emailLabel=key==='name'?'name':label;
+    payload[emailLabel]=value||(key.startsWith('priority_')?'Not requested':'Not provided');
+   }
+  });
+  payload['Privacy consent']=data.get('privacy_consent')==='yes'?'Provided':'Not provided';
   sending=true;button.disabled=true;button.textContent='Sending…';
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),20000);
