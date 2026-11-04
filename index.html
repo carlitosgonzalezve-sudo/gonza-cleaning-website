@@ -210,7 +210,12 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
 .quote-choices label{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #9ddcfa60;border-radius:12px;color:#fff;cursor:pointer;font-size:13px}
 .quote-choices input{width:auto;accent-color:#35d5ff;margin:0}
 .quote-choices label:has(:checked){border-color:#35d5ff;background:#35d5ff20}
-.quote-services label{min-height:44px}
+.quote-step .quote-choices{grid-template-columns:1fr;gap:4px}
+.quote-step .quote-choices label{min-height:44px;padding:8px 4px;border:0;border-radius:8px;font-size:15px;font-weight:500;text-transform:none;letter-spacing:normal}
+.quote-step .quote-choices input{flex:none;width:18px;height:18px}
+.quote-step #sqft{border:1px solid #9ddcfa60;border-radius:24px;padding:10px 14px}
+#quoteActions:has(#quoteBack[hidden]){justify-content:flex-end}
+#quoteActions:has(#quoteBack[hidden]) #quoteNext{flex:0 0 auto;width:auto;min-width:110px;border-radius:999px}
 .quote-actions{display:flex;gap:10px;margin-top:18px}
 .estimate-form .quote-actions .btn{margin:0}
 .estimate-form .quote-actions #quoteBack{width:auto}
