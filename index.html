@@ -159,7 +159,7 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
   // Do not also send a consolidated message: that duplicates the entire form.
   Object.entries(labels).forEach(([key,label])=>{
    if(!data.has(key)&&['bedrooms','bathrooms','frequency','lead_source_details','priority_none'].includes(key))return;
-   if(key.startsWith('priority_')&&form.elements.namedItem(key)?.disabled)return;
+   if(key.startsWith('priority_')&&form.elements.namedItem(key)?.matches(':disabled'))return;
    const value=String(data.get(key)||'').trim();
    if(key==='email'){
     if(value){payload.email=value;payload.replyto=value;}
