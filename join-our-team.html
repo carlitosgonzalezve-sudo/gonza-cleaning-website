@@ -56,6 +56,20 @@ textarea{min-height:90px;resize:vertical}
 .notice.ok{display:block;background:#e9fbef;color:#14613a;border:1px solid #bfe8cf}
 .notice.err{display:block;background:#fff1f1;color:#8a1f1f;border:1px solid #f1c6c6}
 .blocked{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:#fff8e6;border:1px solid #f3dfa6;color:#6b4e00;font-size:14px;line-height:1.5}
+.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero-photo{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/3.4;box-shadow:0 30px 80px #0008;border:1px solid #ffffff25}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo .tag{position:absolute;left:16px;bottom:16px;padding:10px 14px;border-radius:14px;background:#031a3de8;border:1px solid #fff4;color:#fff;font-weight:800;font-size:13px;backdrop-filter:blur(10px)}
+.gallery{padding:56px 0 0}.gallery h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.04em;margin:8px 0 18px}
+.gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+.gal figure{margin:0;border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3.2;box-shadow:0 14px 36px #073c6318}
+.gal img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s}.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption{position:absolute;left:12px;bottom:12px;padding:7px 11px;border-radius:99px;background:#031c4ad9;color:#fff;font-size:12px;font-weight:800}
+.apply-grid{display:grid;grid-template-columns:minmax(0,860px) 1fr;gap:26px;align-items:start}
+.apply-side{position:sticky;top:110px;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px #054a7018}
+.apply-side img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}
+.apply-side div{background:#031c4a;color:#fff;padding:18px 20px;font-size:14px;line-height:1.6}.apply-side strong{display:block;font-size:17px;margin-bottom:4px}
+@media(max-width:860px){.hero .container{grid-template-columns:1fr}.hero-photo{aspect-ratio:4/3}.gal{grid-template-columns:1fr 1fr}.gal figure:first-child{grid-column:1/-1}.apply-grid{grid-template-columns:1fr}.apply-side{display:none}}
 footer{background:#eef9fe;border-top:1px solid #d2eaf5;color:#60758a;padding:34px 0;font-size:14px}
 footer .container{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--navy);font-weight:700}
@@ -66,11 +80,13 @@ footer a{color:var(--navy);font-weight:700}
 <body>
 <nav class="nav"><div class="container"><a class="brand" href="/" aria-label="Gonza Cleaning Services home"><img src="assets/gonza-logo-primary-transparent.png" alt="GONZA CLEANING SERVICES LLC"></a><a class="btn" href="#apply">Apply now →</a></div></nav>
 
-<header class="hero"><div class="container">
+<header class="hero"><div class="container"><div>
 <div class="kicker">We're hiring in the Raleigh area</div>
 <h1>Grow with a cleaning team that values your work.</h1>
 <p>Gonza Cleaning Services is looking for reliable, detail-oriented cleaners for homes and offices in Raleigh, Durham and nearby communities. The application takes about 2 minutes.</p>
 <a class="btn" href="#apply">Start my application →</a>
+</div>
+<div class="hero-photo"><img src="assets/service-office-commercial.webp" width="1200" height="900" alt="Gonza Cleaning Services team member in uniform cleaning a modern office"><span class="tag">Join the Gonza team 💙</span></div>
 </div></header>
 
 <section><div class="container"><div class="perks">
@@ -79,6 +95,16 @@ footer a{color:var(--navy);font-weight:700}
 <div class="perk"><strong>Respectful team</strong><span>Clear communication and support from the office.</span></div>
 <div class="perk"><strong>Room to grow</strong><span>Reliable cleaners can move into team lead roles.</span></div>
 </div></div></section>
+
+<section class="gallery"><div class="container">
+<div class="kicker" style="color:#0781cc">Life at Gonza</div>
+<h2>Proud of every home we clean</h2>
+<div class="gal">
+<figure><img src="assets/gonza-customer-care.webp" width="1400" height="1050" loading="lazy" alt="Gonza cleaner greeting a homeowner at the door"><figcaption>Friendly, respectful service</figcaption></figure>
+<figure><img src="assets/service-deep-clean.webp" width="1200" height="900" loading="lazy" alt="Gonza cleaner doing a detailed bathroom clean"><figcaption>Detail-oriented work</figcaption></figure>
+<figure><img src="assets/service-recurring.webp" width="1200" height="900" loading="lazy" alt="Gonza cleaner vacuuming a living room"><figcaption>Steady recurring clients</figcaption></figure>
+</div>
+</div></section>
 
 <section class="reqs"><div class="container">
 <div class="kicker" style="color:#0781cc">What you need</div>
@@ -96,7 +122,7 @@ footer a{color:var(--navy);font-weight:700}
 <section class="apply" id="apply"><div class="container">
 <div class="kicker" style="color:#0781cc">Application</div>
 <h2>Tell us about yourself</h2>
-<form class="card" id="applyForm" novalidate>
+<div class="apply-grid"><form class="card" id="applyForm" novalidate>
 <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
 
 <fieldset><legend>Contact information</legend><div class="grid">
@@ -140,6 +166,8 @@ footer a{color:var(--navy);font-weight:700}
 <button class="btn" type="submit" id="submitBtn" style="margin-top:12px">Submit my application →</button>
 <div class="notice" id="notice" role="status" aria-live="polite"></div>
 </form>
+<aside class="apply-side"><img src="assets/service-airbnb.webp" width="1200" height="900" loading="lazy" alt="Gonza cleaner preparing a bedroom"><div><strong>We'll be in touch soon</strong>Our team reviews every application and calls qualified applicants from (984) 384-5742.</div></aside>
+</div>
 </div></section>
 
 <footer><div class="container">
