@@ -176,6 +176,13 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
   payload['Privacy policy acknowledged']=data.get('terms_consent')==='yes'?'Yes':'No';
   payload['Terms and conditions accepted']=data.get('terms_consent')==='yes'?'Yes':'No';
   sending=true;button.disabled=true;button.textContent='Sending…';
+  // Also copy the lead into the GoHighLevel CRM. Fire-and-forget: it never blocks or changes the email delivery above.
+  try{
+   const fullName=String(data.get('name')||'').trim();
+   const crm=new URLSearchParams({name:fullName,first_name:fullName.split(/\s+/)[0]||'',last_name:fullName.split(/\s+/).slice(1).join(' '),source:'Website form'});
+   ['phone','email','property_type','service','frequency','bedrooms','bathrooms','square_feet','cleaning_scope','cleaning_areas','zip_code','service_city','preferred_date','service_address','lead_source','lead_source_details','notes'].forEach(key=>{crm.set(key,String(data.get(key)||'').trim())});
+   fetch('https://services.leadconnectorhq.com/hooks/djKDRQ5SK7LVrMdc71PD/webhook-trigger/e6871773-6778-4455-b8bb-ee8dc659ac07',{method:'POST',mode:'no-cors',body:crm,keepalive:true}).catch(()=>{});
+  }catch(error){}
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),20000);
   try{
