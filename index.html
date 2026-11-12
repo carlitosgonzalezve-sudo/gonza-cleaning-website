@@ -176,11 +176,20 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
   payload['Privacy policy acknowledged']=data.get('terms_consent')==='yes'?'Yes':'No';
   payload['Terms and conditions accepted']=data.get('terms_consent')==='yes'?'Yes':'No';payload['SMS consent']=data.get('sms_consent')==='yes'?'Yes':'No';
   sending=true;button.disabled=true;button.textContent='Sending…';
+  const registrationEventId='reg_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
   // Also copy the lead into the GoHighLevel CRM. Fire-and-forget: it never blocks or changes the email delivery above.
   try{
    const fullName=String(data.get('name')||'').trim();
    const crm=new URLSearchParams({name:fullName,first_name:fullName.split(/\s+/)[0]||'',last_name:fullName.split(/\s+/).slice(1).join(' '),source:'Website form'});
    ['phone','email','property_type','service','frequency','bedrooms','bathrooms','square_feet','cleaning_scope','cleaning_areas','zip_code','service_city','preferred_date','service_address','lead_source','lead_source_details','notes'].forEach(key=>{crm.set(key,String(data.get(key)||'').trim())});crm.set('sms_consent',data.get('sms_consent')==='yes'?'yes':'no');
+   // Meta attribution: lets GoHighLevel send the qualified-lead event back to Meta (Conversions API) matched to the original ad click.
+   const readCookie=name=>{const m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));return m?decodeURIComponent(m[1]):''};
+   const fbclid=new URLSearchParams(location.search).get('fbclid')||'';
+   crm.set('fbclid',fbclid);
+   crm.set('fbp',readCookie('_fbp'));
+   crm.set('fbc',readCookie('_fbc')||(fbclid?'fb.1.'+Date.now()+'.'+fbclid:''));
+   crm.set('event_id',registrationEventId);
+   crm.set('page_url',location.href.split('#')[0]);
    fetch('https://services.leadconnectorhq.com/hooks/djKDRQ5SK7LVrMdc71PD/webhook-trigger/e6871773-6778-4455-b8bb-ee8dc659ac07',{method:'POST',mode:'no-cors',body:crm,keepalive:true}).catch(()=>{});
   }catch(error){}
   const controller=new AbortController();
@@ -189,7 +198,8 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
    const response=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload),signal:controller.signal});
    const result=await response.json();
    if(!response.ok||result.success!==true)throw new Error('Delivery not confirmed');
-   if(window.fbq)fbq('track','Lead');
+   // Every completed form = CompleteRegistration. The "Lead" event is sent later, server-side, only for leads GoHighLevel qualifies.
+   if(window.fbq)fbq('track','CompleteRegistration',{},{eventID:registrationEventId});
    show('Thank you! Your estimate request has been received. The GONZA team will contact you soon.');
    form.reset();updatePropertyFields();
   }catch(error){
