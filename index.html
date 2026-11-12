@@ -199,7 +199,7 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
    const result=await response.json();
    if(!response.ok||result.success!==true)throw new Error('Delivery not confirmed');
    // Every completed form = CompleteRegistration. The "Lead" event is sent later, server-side, only for leads GoHighLevel qualifies.
-   if(window.fbq)fbq('track','CompleteRegistration',{},{eventID:registrationEventId});
+   if(window.fbq)fbq('track','Lead',{},{eventID:registrationEventId});
    show('Thank you! Your estimate request has been received. The GONZA team will contact you soon.');
    form.reset();updatePropertyFields();
   }catch(error){
