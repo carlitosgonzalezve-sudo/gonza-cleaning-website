@@ -190,7 +190,7 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
    crm.set('fbc',readCookie('_fbc')||(fbclid?'fb.1.'+Date.now()+'.'+fbclid:''));
    crm.set('event_id',registrationEventId);
    crm.set('page_url',location.href.split('#')[0]);
-   fetch('https://services.leadconnectorhq.com/hooks/djKDRQ5SK7LVrMdc71PD/webhook-trigger/e6871773-6778-4455-b8bb-ee8dc659ac07',{method:'POST',mode:'no-cors',body:crm,keepalive:true}).catch(()=>{});
+   fetch('https://services.leadconnectorhq.com/hooks/djKDRQ5SK7LVrMdc71PD/webhook-trigger/7g0napYc7V7c7J7z0sdn',{method:'POST',mode:'no-cors',body:crm,keepalive:true}).catch(()=>{});
   }catch(error){}
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),20000);
