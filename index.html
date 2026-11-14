@@ -138,6 +138,7 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
 .estimate-contact-options a{text-decoration:underline;text-underline-offset:3px}
 .estimate-form .form-success.show{display:block}
 </style>
+<script>try{var q=new URLSearchParams(location.search);if(q.get('utm_source')||q.get('ad_id')||q.get('fbclid')){var o={};['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','campaign_id','campaign_name','adset_id','adset_name','ad_id','ad_name','placement','site_source_name'].forEach(function(k){if(q.get(k))o[k]=q.get(k)});sessionStorage.setItem('gonzaUtm',JSON.stringify(o))}}catch(e){}</script>
 <script id="gonzaEstimateDelivery" data-provider="web3forms">
 (function(){
  const form=document.getElementById('estimateForm');
@@ -190,6 +191,13 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
    crm.set('fbc',readCookie('_fbc')||(fbclid?'fb.1.'+Date.now()+'.'+fbclid:''));
    crm.set('event_id',registrationEventId);
    crm.set('page_url',location.href.split('#')[0]);
+   // Ad tracking (UTMs from Meta): saved on landing so they survive navigation between pages.
+   try{
+    const keys=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','campaign_id','campaign_name','adset_id','adset_name','ad_id','ad_name','placement','site_source_name'];
+    const now=new URLSearchParams(location.search);let saved={};
+    try{saved=JSON.parse(sessionStorage.getItem('gonzaUtm')||'{}')}catch(e){}
+    keys.forEach(k=>{const v=now.get(k)||saved[k]||'';crm.set(k,v)});
+   }catch(e){}
    fetch('https://services.leadconnectorhq.com/hooks/djKDRQ5SK7LVrMdc71PD/webhook-trigger/7g0napYc7V7c7J7z0sdn',{method:'POST',mode:'no-cors',body:crm,keepalive:true}).catch(()=>{});
   }catch(error){}
   const controller=new AbortController();
