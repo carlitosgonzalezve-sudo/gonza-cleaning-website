@@ -166,13 +166,13 @@ footer a{color:var(--navy);font-weight:700}
 <button class="btn" type="submit" id="submitBtn" style="margin-top:12px">Submit my application →</button>
 <div class="notice" id="notice" role="status" aria-live="polite"></div>
 </form>
-<aside class="apply-side"><img src="assets/service-airbnb.webp" width="1200" height="900" loading="lazy" alt="Gonza cleaner preparing a bedroom"><div><strong>We'll be in touch soon</strong>Our team reviews every application and calls qualified applicants from (984) 384-5742.</div></aside>
+<aside class="apply-side"><img src="assets/service-airbnb.webp" width="1200" height="900" loading="lazy" alt="Gonza cleaner preparing a bedroom"><div><strong>We'll be in touch soon</strong>Our team reviews every application and calls qualified applicants from (984) 333-8199.</div></aside>
 </div>
 </div></section>
 
 <footer><div class="container">
 <span>© <span id="yr"></span> Gonza Cleaning Services LLC · Raleigh, NC</span>
-<span><a href="/">Home</a> · <a href="/#estimate">Free estimate</a> · <a href="tel:+19843845742">(984) 384-5742</a></span>
+<span><a href="/">Home</a> · <a href="/#estimate">Free estimate</a> · <a href="tel:+19843338199">(984) 333-8199</a></span>
 </div></footer>
 
 <script>
@@ -203,7 +203,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
   try{await fetch(GHL,{method:'POST',mode:'no-cors',body:crm,keepalive:true});ghlOk=true;}catch(err){}
   try{const payload={access_key:WEB3_KEY,subject:'New Job Application - '+data.first_name+' '+data.last_name,from_name:'GONZA Join Our Team',email:data.email,replyto:data.email};Object.keys(labels).forEach(k=>payload[labels[k]]=data[k]||'—');const r=await fetch(WEB3,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)});const j=await r.json();mailOk=r.ok&&j.success===true;}catch(err){}
   if(ghlOk||mailOk){show('Thank you, '+data.first_name+'! We received your application. Our team will review it and contact you soon.',true);form.reset();reqNotice.style.display='none';}
-  else{show('We could not send your application. Please try again, or call or text us at (984) 384-5742.',false);}
+  else{show('We could not send your application. Please try again, or call or text us at (984) 333-8199.',false);}
   sending=false;btn.disabled=false;btn.textContent='Submit my application →';
  });
 })();
