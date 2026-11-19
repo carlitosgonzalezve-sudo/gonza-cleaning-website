@@ -176,6 +176,11 @@ const themeToggle=document.getElementById('themeToggle');const themeMeta=documen
   });
   payload['Privacy policy acknowledged']=data.get('terms_consent')==='yes'?'Yes':'No';
   payload['Terms and conditions accepted']=data.get('terms_consent')==='yes'?'Yes':'No';payload['SMS consent']=data.get('sms_consent')==='yes'?'Yes':'No';payload['SMS marketing consent']=data.get('marketing_sms_consent')==='yes'?'Yes':'No';
+  try{const nowQ=new URLSearchParams(location.search);let sv={};try{sv=JSON.parse(sessionStorage.getItem('gonzaUtm')||'{}')}catch(e){}
+   const g=k=>nowQ.get(k)||sv[k]||'';
+   payload['Ad source']=g('utm_source')||g('fbclid')||sv.fbclid?(g('utm_source')||'meta'):'Direct / organic';
+   payload['Ad name']=g('ad_name')||g('utm_content')||'N/A';payload['Campaign']=g('campaign_name')||g('utm_campaign')||'N/A';payload['Ad set']=g('adset_name')||'N/A';
+  }catch(e){}
   sending=true;button.disabled=true;button.textContent='Sending…';
   const registrationEventId='reg_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
   // Also copy the lead into the GoHighLevel CRM. Fire-and-forget: it never blocks or changes the email delivery above.
