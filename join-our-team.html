@@ -61,7 +61,7 @@ textarea{min-height:90px;resize:vertical}
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-photo .tag{position:absolute;left:16px;bottom:16px;padding:10px 14px;border-radius:14px;background:#031a3de8;border:1px solid #fff4;color:#fff;font-weight:800;font-size:13px;backdrop-filter:blur(10px)}
 .gallery{padding:56px 0 0}.gallery h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.04em;margin:8px 0 18px}
-.gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
 .gal figure{margin:0;border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3.2;box-shadow:0 14px 36px #073c6318}
 .gal img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s}.gal figure:hover img{transform:scale(1.05)}
 .gal figcaption{position:absolute;left:12px;bottom:12px;padding:7px 11px;border-radius:99px;background:#031c4ad9;color:#fff;font-size:12px;font-weight:800}
@@ -69,7 +69,7 @@ textarea{min-height:90px;resize:vertical}
 .apply-side{position:sticky;top:110px;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px #054a7018}
 .apply-side img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}
 .apply-side div{background:#031c4a;color:#fff;padding:18px 20px;font-size:14px;line-height:1.6}.apply-side strong{display:block;font-size:17px;margin-bottom:4px}
-@media(max-width:860px){.hero .container{grid-template-columns:1fr}.hero-photo{aspect-ratio:16/10}.gal{grid-template-columns:1fr 1fr}.gal figure:first-child{grid-column:1/-1}.apply-grid{grid-template-columns:1fr}.apply-side{display:none}}
+@media(max-width:860px){.hero .container{grid-template-columns:1fr}.hero-photo{aspect-ratio:16/10}.gal{grid-template-columns:1fr}.apply-grid{grid-template-columns:1fr}.apply-side{display:none}}
 footer{background:#eef9fe;border-top:1px solid #d2eaf5;color:#60758a;padding:34px 0;font-size:14px}
 footer .container{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--navy);font-weight:700}
