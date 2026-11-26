@@ -78,5 +78,30 @@
     "name": "Zebulon",
     "lat": 35.829542,
     "lng": -78.314158
+  },
+  {
+    "name": "Greensboro",
+    "lat": 36.072635,
+    "lng": -79.791975
+  },
+  {
+    "name": "Burlington",
+    "lat": 36.09569,
+    "lng": -79.437799
+  },
+  {
+    "name": "Mebane",
+    "lat": 36.095961,
+    "lng": -79.267252
+  },
+  {
+    "name": "High Point",
+    "lat": 35.955692,
+    "lng": -80.005318
+  },
+  {
+    "name": "Winston-Salem",
+    "lat": 36.09986,
+    "lng": -80.244216
   }
 ]
